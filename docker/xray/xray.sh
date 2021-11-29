@@ -1,11 +1,11 @@
 #!/bin/sh
 #
-# This is a Shell script for v2ray based alpine with Docker image
+# This is a Shell script for xray based alpine with Docker image
 # 
 # Copyright (C) 2019 - 2020 Teddysun <i@teddysun.com>
 #
 # Reference URL:
-# https://github.com/v2fly/v2ray-core.git
+# https://github.com/XTLS/Xray-core
 
 PLATFORM=$1
 if [ -z "$PLATFORM" ]; then
@@ -40,21 +40,13 @@ else
 fi
 [ -z "${ARCH}" ] && echo "Error: Not supported OS Architecture" && exit 1
 # Download binary file
-V2RAY_FILE="v2ray_linux_${ARCH}"
-V2CTL_FILE="v2ctl_linux_${ARCH}"
+XRAY_FILE="xray_linux_${ARCH}"
 
-echo "Downloading binary file: ${V2RAY_FILE}"
-wget -O /usr/bin/v2ray https://dl.lamp.sh/files/${V2RAY_FILE} > /dev/null 2>&1
+echo "Downloading binary file: ${XRAY_FILE}"
+wget -O /usr/bin/xray https://dl.lamp.sh/files/${XRAY_FILE} > /dev/null 2>&1
 if [ $? -ne 0 ]; then
-    echo "Error: Failed to download binary file: ${V2RAY_FILE}" && exit 1
+    echo "Error: Failed to download binary file: ${XRAY_FILE}" && exit 1
 fi
-echo "Download binary file: ${V2RAY_FILE} completed"
+echo "Download binary file: ${XRAY_FILE} completed"
 
-echo "Downloading binary file: ${V2CTL_FILE}"
-wget -O /usr/bin/v2ctl https://dl.lamp.sh/files/${V2CTL_FILE} > /dev/null 2>&1
-if [ $? -ne 0 ]; then
-    echo "Error: Failed to download binary file: ${V2CTL_FILE}" && exit 1
-fi
-echo "Download binary file: ${V2CTL_FILE} completed"
-chmod +x /usr/bin/v2ray
-chmod +x /usr/bin/v2ctl
+chmod +x /usr/bin/xray
